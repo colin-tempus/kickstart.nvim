@@ -11,11 +11,33 @@ return {
   },
   lazy = false,
   keys = {
-    { '\\', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
+    { '<leader>nn', ':Neotree toggle<CR>', desc = 'NeoTree reveal', silent = true },
+    { '<leader>nd', ':Neotree document_symbols<CR>', desc = 'NeoTree reveal', silent = true },
   },
   opts = {
+    sources = {
+      'filesystem',
+      'buffers',
+      'git_status',
+      'document_symbols', -- Enable document symbols
+    },
+
+    -- Minimal document_symbols configuration
+    document_symbols = {
+      follow_cursor = true,
+      window = {
+        width = 30,
+        position = 'right',
+        mappings = {
+          ['<cr>'] = 'jump_to_symbol',
+          ['o'] = 'jump_to_symbol',
+          ['<esc>'] = 'cancel',
+        },
+      },
+    },
     filesystem = {
       window = {
+        width = 30,
         mappings = {
           ['\\'] = 'close_window',
         },
